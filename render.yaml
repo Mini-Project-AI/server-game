@@ -2,12 +2,12 @@ services:
   - type: web
     name: flask-app
     env: python
-    plan: starter
-    repo: https://github.com/Mini-Project-AI/server-game # replace with your repository URL
-    branch: main # replace with your branch name if different from main
+    plan: free
+    repo: https://github.com/Mini-Project-AI/server-game
+    branch: develop
     buildCommand: pip install -r requirements.txt
-    startCommand: python server.py
+    startCommand: gunicorn "server:app" -b :10000
     envVars:
       - key: FLASK_ENV
         value: production
-    region: frankfurt # optional, specify if you have a preferred region
+    region: frankfurt
