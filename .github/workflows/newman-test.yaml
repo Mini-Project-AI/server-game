@@ -27,4 +27,4 @@ jobs:
       run: npm install -g newman
 
     - name: Run Newman tests
-      run: newman run test/post-man-collection.json
+      run: newman run test/post-man_collection.json
