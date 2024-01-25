@@ -8,7 +8,5 @@ services:
     envVars:
       - key: FLASK_ENV
         value: production
-    github:
-      repo: Mini-Project-AI/server-game
-      branch: main
-      autoDeploy: true
+    repo: Mini-Project-AI/server-game
+    branch: main
