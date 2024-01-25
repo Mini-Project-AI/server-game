@@ -11,4 +11,5 @@ def health_care():
         "statusCode": 200
     }
 
-app.run(debug = True)
+if __name__ == '__main__':
+    app.run()
