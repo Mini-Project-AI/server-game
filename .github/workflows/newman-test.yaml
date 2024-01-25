@@ -51,7 +51,5 @@ jobs:
     - name: Run Newman tests
       run: newman run test/post-man_collection.json
 
-    - name: Shutdown Flask Server
-      if: always()
-      run: 
-        kill $(jobs -p)
+    - name: Terminate Flask server
+      run: pkill -f flask
