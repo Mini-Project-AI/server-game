@@ -38,11 +38,15 @@ jobs:
         pip install -r requirements.txt
 
     - name: Start Flask Server
-      run: 
-        export FLASK_APP=server.py  
+      run: |
+        export FLASK_APP=server.py
         export FLASK_ENV=development
         flask run &
         sleep 5
+      shell: /usr/bin/bash -e {0}
+      env:
+        pythonLocation: /opt/hostedtoolcache/Python/3.12.1/x64
+        LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.1/x64/lib
   
     - name: Run Newman tests
       run: newman run test/post-man_collection.json
