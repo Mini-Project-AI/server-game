@@ -32,7 +32,7 @@
 							"",
 							"    // Check if the status field is true",
 							"    pm.test(\"Status field is true\", function () {",
-							"        pm.expect(pm.response.json().status).to.be.true;",
+							"        pm.expect(pm.response.json().status).to.eql(true);",
 							"    });",
 							"})"
 						],
