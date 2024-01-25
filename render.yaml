@@ -1,0 +1,17 @@
+services:
+- type: web
+  name: flask-app
+  env: python
+  plan: starter
+  buildCommand: pip install -r requirements.txt
+  startCommand: python server.py
+  envVars:
+    - key: FLASK_ENV
+      value: production
+  healthCheckPath: /
+  regions:
+    - frankfurt
+  github:
+    repo: username/repository
+    branch: main
+    autoDeploy: true
