@@ -1,15 +1,8 @@
 from flask import Flask
+from routes import register_blueprints
 
 app = Flask(__name__)
-
-
-@app.route("/")
-def health_care():
-    return {
-        "message": "success connect to the server",
-        "status": True,
-        "statusCode": 200
-    }
+register_blueprints(app)
 
 if __name__ == '__main__':
     app.run()

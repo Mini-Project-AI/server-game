@@ -42,9 +42,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{BASEURL}}",
+					"raw": "{{BASEURL}}/health-care",
 					"host": [
 						"{{BASEURL}}"
+					],
+					"path": [
+						"health-care"
 					]
 				}
 			},
