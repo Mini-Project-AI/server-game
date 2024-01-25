@@ -3,10 +3,10 @@ services:
     name: flask-app
     env: python
     plan: free
-    repo: https://github.com/Mini-Project-AI/server-game 
+    repo: https://github.com/Mini-Project-AI/server-game
     branch: develop
     buildCommand: pip install -r requirements.txt
-    startCommand: python server.py
+    startCommand: gunicorn "server:app" -b :10000
     envVars:
       - key: FLASK_ENV
         value: production
