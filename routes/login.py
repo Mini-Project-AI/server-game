@@ -5,8 +5,12 @@ from config.connect import db
 from util.validation_inputs import is_valid_email, is_valid_password
 import datetime
 from util.generate_response import response_bad_request, response_ok, response_not_found
+import os
+from dotenv import load_dotenv
 
-JWT_SECRET = 'your_jwt_secret'
+load_dotenv()
+
+JWT_SECRET = os.getenv('JWT_SECRET')
 
 login_blueprint = Blueprint('login', __name__)
 

@@ -6,8 +6,12 @@ from config.connect import db
 from util.validation_inputs import is_valid_email, is_valid_password, is_valid_name, is_valid_age
 import datetime
 from util.generate_response import response_bad_request, response_create_request
-# Replace 'your_jwt_secret' with your actual JWT secret key
-JWT_SECRET = 'your_jwt_secret'
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+JWT_SECRET = os.getenv('JWT_SECRET')
+
 register_blueprint = Blueprint('register', __name__)
 
 @register_blueprint.route("/register", methods=["POST"])
