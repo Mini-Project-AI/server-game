@@ -3,3 +3,5 @@ Werkzeug==3.0.1
 flask-restful==0.3.9
 requests==2.26.0
 gunicorn
+pymongo
+bcrypt
