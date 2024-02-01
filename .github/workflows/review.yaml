@@ -1,0 +1,24 @@
+name: Deploy to PythonAnywhere
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      
+      # Add steps to build and deploy your Flask application here...
+
+      - name: Reload PythonAnywhere web app
+        uses: jensvog/pythonanywhere-webapp-reload-action@v1
+        with:
+          username: ${{ secrets.PA_USERNAME }}
+          api-token: ${{ secrets.PA_API_TOKEN }}
+          domain-name: ${{ secrets.PA_DOMAIN_NAME }}
