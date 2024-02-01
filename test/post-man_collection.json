@@ -1,57 +1,168 @@
 {
 	"info": {
 		"_postman_id": "ffa92d68-28ce-41d6-9396-a8ec19df1237",
-		"name": "tic tac toe",
+		"name": "tic tac toe local",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "32555479",
 		"_collection_link": "https://planetary-equinox-750048.postman.co/workspace/Team-Workspace~c48cadeb-1074-403a-856c-bc162dfcb813/collection/32555486-ffa92d68-28ce-41d6-9396-a8ec19df1237?action=share&source=collection_link&creator=32555479"
 	},
 	"item": [
 		{
-			"name": "Health Care",
-			"event": [
+			"name": "0.health-care",
+			"item": [
 				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status health care\", function () {",
-							"",
-							"    const responseData =  pm.response.json()",
-							"",
-							"    // Check if the response status code is 200",
-							"    pm.test(\"Status code is 200\", function () {",
-							"        pm.expect(responseData.statusCode).to.eql(200);",
-							"    });",
-							"",
-							"    // Check if the response contains the expected message",
-							"    pm.test(\"Response message is correct\", function () {",
-							"        pm.expect(responseData.message).to.eql(\"success connect to the server\");",
-							"    });",
-							"",
-							"    // Check if the status field is true",
-							"    pm.test(\"Status field is true\", function () {",
-							"        pm.expect(responseData.status).to.eql(true);",
-							"    });",
-							"})"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{BASEURL}}/health-care",
-					"host": [
-						"{{BASEURL}}"
+					"name": "Health Care",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status health care\", function () {",
+									"",
+									"    const responseData =  pm.response.json()",
+									"",
+									"    // Check if the response status code is 200",
+									"    pm.test(\"Status code is 200\", function () {",
+									"        pm.expect(responseData.statusCode).to.eql(200);",
+									"    });",
+									"",
+									"    // Check if the response contains the expected message",
+									"    pm.test(\"Response message is correct\", function () {",
+									"        pm.expect(responseData.message).to.eql(\"success connect to the server\");",
+									"    });",
+									"",
+									"    // Check if the status field is true",
+									"    pm.test(\"Status field is true\", function () {",
+									"        pm.expect(responseData.status).to.eql(true);",
+									"    });",
+									"",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
 					],
-					"path": [
-						"health-care"
-					]
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASEURL}}/health-care",
+							"host": [
+								"{{BASEURL}}"
+							],
+							"path": [
+								"health-care"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
+		},
+		{
+			"name": "1.auth",
+			"item": [
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Login Endpoint Test\", function () {",
+									"        pm.response.to.have.status(200);",
+									"        pm.response.to.have.jsonBody(\"data.user\");",
+									"        pm.response.to.have.jsonBody(\"data.token\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"{{email}}\",\n    \"password\": \"{{password}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASEURL}}/login",
+							"host": [
+								"{{BASEURL}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "register",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Register Endpoint Test\", function () {",
+									"        if (pm.response.code === 200) {",
+									"            pm.test(\"Handle 200 OK Response\", function () {",
+									"                pm.response.to.have.jsonBody({",
+									"                    message: \"User created with success\",",
+									"                    status: true,",
+									"                    statusCode: 200",
+									"                });",
+									"            });",
+									"        } ",
+									"        else if (pm.response.code === 400) {",
+									"            pm.test(\"Handle 400 Bad Request Response\", function () {",
+									"                pm.response.to.have.jsonBody({",
+									"                    message: \"User already exists\",",
+									"                    status: false,",
+									"                    statusCode: 400",
+									"                });",
+									"            });",
+									"        }",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"{{email}}\",\n    \"password\": \"{{password}}\",\n    \"first_name\": \"{{first_name}}\",\n    \"last_name\": \"{{last_name}}\",\n    \"age\": {{age}}\n}"
+						},
+						"url": {
+							"raw": "{{BASEURL}}/register",
+							"host": [
+								"{{BASEURL}}"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	],
 	"event": [
@@ -78,6 +189,36 @@
 		{
 			"key": "BASEURL",
 			"value": "http://localhost:5000/",
+			"type": "string"
+		},
+		{
+			"key": "initBoard",
+			"value": "[0,0,0,0,0,0,0,0,0]",
+			"type": "string"
+		},
+		{
+			"key": "email",
+			"value": "raedrdhaounia@gmail.com",
+			"type": "string"
+		},
+		{
+			"key": "password",
+			"value": "dadHH123!",
+			"type": "string"
+		},
+		{
+			"key": "first_name",
+			"value": "raed",
+			"type": "string"
+		},
+		{
+			"key": "last_name",
+			"value": "rdhaounia",
+			"type": "string"
+		},
+		{
+			"key": "age",
+			"value": "29",
 			"type": "string"
 		}
 	]
