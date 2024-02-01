@@ -69,10 +69,10 @@ jobs:
       with:
         script: |
           const { GitHub } = require('@actions/github');
-          const github = new GitHub(process.env.GITHUB_TOKEN);
+          const githubClient = new GitHub(process.env.GITHUB_TOKEN);
           const status = process.env.GITHUB_RUN_CONCLUSION === 'success' ? 'completed' : 'completed';
           const conclusion = process.env.GITHUB_RUN_CONCLUSION === 'success' ? 'success' : 'failure';
-          await github.checks.create({
+          await githubClient.checks.create({
             ...github.context.repo,
             head_sha: github.context.sha,
             name: 'CI/CD Pipeline',
