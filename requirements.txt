@@ -6,3 +6,4 @@ PyJWT==2.3.0
 gunicorn
 pymongo
 bcrypt
+python-dotenv
