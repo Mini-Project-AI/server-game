@@ -2,6 +2,8 @@
 from flask import Flask
 # Importing the register_blueprints function from the routes package
 from routes import register_blueprints
+# Importing the db object
+from config.connect import db
 
 # Creating an instance of the Flask class
 # This instance will act as our WSGI application
