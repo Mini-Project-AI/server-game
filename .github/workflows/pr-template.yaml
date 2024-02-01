@@ -18,13 +18,3 @@ jobs:
           else
             echo "PR Template already exists. Skipping copying."
           fi
-
-      - name: Checkout main branch
-        run: git checkout main
-
-      - name: Commit and push changes if template updated
-        run: |
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "actions@github.com"
-          git add .github/PULL_REQUEST_TEMPLATE.md
-          git diff --quiet && git diff --staged --quiet || git commit -m "Update PR Template" && git push origin main
