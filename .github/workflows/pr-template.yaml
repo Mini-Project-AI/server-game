@@ -10,9 +10,19 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-      - name: Add Pull Request Template
+
+      - name: Check if PR Template exists
         run: |
-          cp .github/PULL_REQUEST_TEMPLATE.md $GITHUB_WORKSPACE/.github/PULL_REQUEST_TEMPLATE.md
+          if [ ! -f "$GITHUB_WORKSPACE/.github/PULL_REQUEST_TEMPLATE.md" ]; then
+            cp .github/PULL_REQUEST_TEMPLATE.md $GITHUB_WORKSPACE/.github/PULL_REQUEST_TEMPLATE.md
+          else
+            echo "PR Template already exists. Skipping copying."
+          fi
+
+      - name: Commit and push changes if template updated
+        run: |
+          cd $GITHUB_WORKSPACE
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
           git add .github/PULL_REQUEST_TEMPLATE.md
-          git commit -m "Add PR Template" || true
-          git push
+          git diff --quiet && git diff --staged --quiet || git commit -m "Update PR Template" && git push
