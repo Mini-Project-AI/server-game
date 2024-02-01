@@ -7,6 +7,7 @@ on:
   pull_request:
     branches:
       - develop
+    types: [opened, synchronize, reopened]
 
 jobs:
   test:
@@ -61,3 +62,19 @@ jobs:
 
     - name: Delete .env file
       run: rm .env
+
+    - name: Set PR status
+      if: always()
+      uses: actions/github-script@v4
+      with:
+        script: |
+          const status = process.env.GITHUB_RUN_CONCLUSION === 'success' ? 'success' : 'failure';
+          github.repos.createStatus({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            sha: context.sha,
+            state: status,
+            context: 'CI/CD Pipeline',
+            description: status === 'success' ? 'All tests passed' : 'Tests failed',
+            target_url: process.env.GITHUB_RUN_URL
+          });
