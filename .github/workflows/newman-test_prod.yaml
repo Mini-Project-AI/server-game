@@ -3,10 +3,10 @@ name: Newman Postman Tests
 on:
   push:
     branches:
-      - main
+      - develop
   pull_request:
     branches:
-      - main
+      - develop
 
 jobs:
   test:
@@ -54,7 +54,7 @@ jobs:
         LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.1/x64/lib
   
     - name: Run Newman tests
-      run: newman run test/post-man_collection_dev.json
+      run: newman run test/post-man_collection_prod.json
 
     - name: Terminate Flask server
       run: pkill -f flask
