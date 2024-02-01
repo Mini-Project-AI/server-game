@@ -1,0 +1,63 @@
+name: Newman Postman Tests
+
+on:
+  push:
+    branches:
+      - develop
+  pull_request:
+    branches:
+      - develop
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: '18'
+
+    - name: Install Newman
+      run: npm install -g newman
+
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x' 
+
+    - name: Create .env file
+      run: |
+        echo "MONGO_URI=${{ secrets.MONGO_URI }}" > .env
+        echo "DB_NAME=${{ secrets.DB_NAME }}" >> .env
+        echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> .env
+      shell: bash
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Start Flask Server
+      run: |
+        export FLASK_APP=server.py
+        export FLASK_ENV=development
+        flask run &
+        sleep 5
+      shell: /usr/bin/bash -e {0}
+      env:
+        pythonLocation: /opt/hostedtoolcache/Python/3.12.1/x64
+        LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.1/x64/lib
+  
+    - name: Run Newman tests
+      run: newman run test/post-man_collection.json
+
+    - name: Terminate Flask server
+      run: pkill -f flask
+
+    - name: Delete .env file
+      run: rm .env
