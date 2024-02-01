@@ -31,7 +31,7 @@ jobs:
 
       - name: Deploy Flask application
         run: |
-          rsync -av --exclude='.git' . ${{ secrets.PA_USERNAME }}@ssh.pythonanywhere.com:/home/raedrdhaounia/mysite
+          rsync -av --exclude='.git' -e 'ssh -p 2222' . ${{ secrets.PA_USERNAME }}@ssh.pythonanywhere.com:/home/${{ secrets.PA_USERNAME }}/mysite
 
       - name: Reload PythonAnywhere web app
         uses: jensvog/pythonanywhere-webapp-reload-action@v1
