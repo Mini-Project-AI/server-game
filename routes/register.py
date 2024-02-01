@@ -1,5 +1,26 @@
-from flask import Blueprint, request
+""" routes/register.py
 
+Function Description:
+This function handles user registration requests by validating the provided user data and creating a new user in the database if the data is valid.
+
+Dependencies:
+- Flask: Micro web framework for Python.
+- Blueprint: Part of Flask for defining a collection of routes.
+- request: Part of Flask for accessing request data.
+- generate_password_hash: Function from Werkzeug for securely hashing passwords.
+- jwt: JSON Web Token library for encoding and decoding JWTs.
+- config.connect: Module for connecting to the database.
+- util.validation_inputs: Module for validating user input data.
+- util.generate_response: Module for generating standardized response messages.
+- os: Module for interacting with the operating system.
+- dotenv: Module for loading environment variables from a .env file.
+
+Usage:
+1. Use this function as a route handler for the '/register' endpoint in the Flask application.
+
+"""
+
+from flask import Blueprint, request
 from werkzeug.security import generate_password_hash
 import jwt
 from config.connect import db

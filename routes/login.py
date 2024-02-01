@@ -1,3 +1,26 @@
+""" routes/login.py
+
+Function Description:
+This function handles user login by validating the provided email and password,
+fetching the user from the database, verifying the password, and generating a JWT token upon successful login.
+
+Dependencies:
+- Flask: Micro web framework for Python.
+- Blueprint: Part of Flask for defining a collection of routes.
+- request: Module for handling HTTP request data.
+- check_password_hash: Function for verifying password hashes.
+- jwt: JSON Web Token implementation.
+- os: Module for interacting with the operating system.
+- load_dotenv: Function to load environment variables from a .env file.
+- config.connect: Module for connecting to the MongoDB database.
+- util.validation_inputs: Module for input validation functions.
+- util.generate_response: Module for generating standardized response messages.
+
+Usage:
+1. Ensure that the environment variables are set, including the JWT_SECRET key.
+2. Use this function as a route handler for the '/login' endpoint in the Flask application.
+
+"""
 from flask import Blueprint, request
 from werkzeug.security import check_password_hash
 import jwt
