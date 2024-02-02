@@ -64,9 +64,43 @@
 			"item": [
 				{
 					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Login Endpoint Test\", function () {",
+									"        pm.response.to.have.status(200);",
+									"        pm.response.to.have.jsonBody(\"data.user\");",
+									"        pm.response.to.have.jsonBody(\"data.token\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
-						"header": []
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"{{email}}\",\n    \"password\": \"{{password}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASEURL}}/login",
+							"host": [
+								"{{BASEURL}}"
+							],
+							"path": [
+								"login"
+							]
+						}
 					},
 					"response": []
 				},
@@ -382,7 +416,7 @@
 		},
 		{
 			"key": "last_name",
-			"value": " rdhaounia",
+			"value": "rdhaounia",
 			"type": "string"
 		},
 		{
