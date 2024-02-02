@@ -10,16 +10,25 @@ server_Flask_min-max/
 │
 │
 ├── routes
-│ ├── init.py
+│ ├── ai
+│ | └── bestMove.py
+│ ├── __init__.py
 │ ├── health.py
 │ ├── login.py
 │ ├── register.py
 │ └── init.py
 ├── algorithm
+│ ├── bestMove
+│ | ├── __init__.py
+│ | ├── alphaBeta.py
+│ | └── minMax.py
+│ └── model
+│   └── Board.py
 ├── config
 │ └── connect.py
 ├── util
 │ ├── generate_response.py
+│ ├── transform_board.py
 │ └── validation_inputs.py
 ├── test
 │ └── post-man_collection.json
@@ -32,22 +41,31 @@ server_Flask_min-max/
 ```
 
 
-### Description of Key Files and Directories
+## Description of Key Files and Directories
 
 - `/routes`: This directory contains modular routing configurations.
-  - `__init__.py`: Allows Python to recognize the directory as a package.
-  - `health.py`: Handles routes related to the health status of the server.
-  - `login.py`: Manages routes for user login functionality.
-  - `register.py`: Handles routes for user registration.
+  - `ai/`: Subdirectory containing AI-related routes.
+    - `bestMove.py`: Handles routes related to calculating the best move.
+  - `__init__.py`: Initialization file to recognize the directory as a package.
+  - `health.py`: Manages routes related to the health status of the server.
+  - `login.py`: Handles routes for user login functionality.
+  - `register.py`: Manages routes for user registration.
 
 - `/algorithm`: Contains the core algorithms used in the project.
+  - `bestMove/`: Subdirectory containing algorithm-related files.
+    - `__init__.py`: Initialization file for the algorithm package.
+    - `alphaBeta.py`: Implementation of the Alpha-Beta Pruning algorithm.
+    - `minMax.py`: Implementation of the Minimax algorithm.
+  - `model/`: Subdirectory containing the model-related files.
+    - `Board.py`: Defines the Board class used in the algorithms.
 
 - `/config`: Stores configuration files and scripts.
   - `connect.py`: Manages the connection to the MongoDB database.
 
 - `/util`: Includes utility scripts and helper functions.
   - `generate_response.py`: Provides functions for generating standardized responses.
-  - `validation_inputs.py`: Contains functions for input validation.
+  - `transform_board.py`: Contains functions for transforming the game board.
+  - `validation_inputs.py`: Includes functions for input validation.
 
 - `/test`: Contains test files for the application.
   - `post-man_collection.json`: Postman collection for API testing.
@@ -58,6 +76,20 @@ server_Flask_min-max/
 
 - `.gitignore`: Specifies intentionally untracked files to ignore.
 
-- `render.yaml`: configuration settings or instructions related to deploying Flask application after each new PR accepted
+- `render.yaml`: Configuration settings or instructions related to deploying the Flask application after each new PR accepted.
 
-- `README.md`: Provides an overview and documentation for the project.
+## Usage
+
+To run the server, execute the `server.py` file. Make sure to install the required dependencies listed in `requirements.txt`.
+
+## Testing
+
+The `/test` directory contains test files, including a Postman collection (`post-man_collection.json`), for testing the APIs and functionalities.
+
+## Contributing
+
+Contributions are welcome! Feel free to open issues or pull requests for any improvements or bug fixes.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).

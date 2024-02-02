@@ -195,7 +195,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"board\": {{board}},\n    \"algorithm\": true,\n    \"time\": true\n}",
+							"raw": "{\n    \"board\": {{board}},\n    \"algorithm\": false,\n    \"time\": true\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -203,11 +203,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASEURL}}ai/best_move",
+							"raw": "{{BASEURL}}/ai/best_move",
 							"host": [
-								"{{BASEURL}}ai"
+								"{{BASEURL}}"
 							],
 							"path": [
+								"ai",
 								"best_move"
 							]
 						}
@@ -228,11 +229,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{BASEURL}}ai/best_move",
+									"raw": "{{BASEURL}}/ai/best_move",
 									"host": [
-										"{{BASEURL}}ai"
+										"{{BASEURL}}"
 									],
 									"path": [
+										"ai",
 										"best_move"
 									]
 								}
@@ -257,11 +259,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{BASEURL}}ai/best_move",
+									"raw": "{{BASEURL}}/ai/best_move",
 									"host": [
-										"{{BASEURL}}ai"
+										"{{BASEURL}}"
 									],
 									"path": [
+										"ai",
 										"best_move"
 									]
 								}
@@ -286,11 +289,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{BASEURL}}ai/best_move",
+									"raw": "{{BASEURL}}/ai/best_move",
 									"host": [
-										"{{BASEURL}}ai"
+										"{{BASEURL}}"
 									],
 									"path": [
+										"ai",
 										"best_move"
 									]
 								}
@@ -315,11 +319,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{BASEURL}}ai/best_move",
+									"raw": "{{BASEURL}}/ai/best_move",
 									"host": [
-										"{{BASEURL}}ai"
+										"{{BASEURL}}"
 									],
 									"path": [
+										"ai",
 										"best_move"
 									]
 								}
@@ -383,6 +388,26 @@
 		{
 			"key": "age",
 			"value": "29",
+			"type": "string"
+		},
+		{
+			"key": "algorithm",
+			"value": "false",
+			"type": "string"
+		},
+		{
+			"key": "big_board",
+			"value": "[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]",
+			"type": "string"
+		},
+		{
+			"key": "wrong_board",
+			"value": "[0,0,0,0,0]",
+			"type": "string"
+		},
+		{
+			"key": "board",
+			"value": "[0,0,0,0,0,0,0,0,0]",
 			"type": "string"
 		}
 	]
