@@ -7,3 +7,4 @@ gunicorn
 pymongo
 bcrypt
 python-dotenv
+flask-cors
