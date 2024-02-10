@@ -4,6 +4,8 @@ from flask import Flask
 from routes import register_blueprints
 # Importing the db object
 from config.connect import db
+# Importing the CORS module
+from flask_cors import CORS
 
 # Creating an instance of the Flask class
 # This instance will act as our WSGI application
@@ -14,6 +16,10 @@ app = Flask(__name__)
 # Here, we are registering the blueprints defined in the routes package to our app
 # This helps in keeping the application modular and scalable
 register_blueprints(app)
+
+# Adding CORS support to allow cross-origin requests
+# By default, it allows all origins and all methods, which can be adjusted based on your requirements
+CORS(app)
 
 # The conditional __name__ == '__main__' is used to ensure that this script is executed
 # only when it is run as the main program, and not when imported as a module in other scripts
